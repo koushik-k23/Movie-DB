@@ -1,0 +1,167 @@
+doctype html
+link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+head
+  script(src='/client.js')
+  title Account Profile
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1')
+  style.
+    .header{
+    font-family: sans-serif;
+    text-align: center;
+    background: #FFFFFF;
+    padding: 10px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    color: white;
+    }
+    .navigation {
+    font-family: sans-serif;
+    overflow: hidden;
+    background-color: #8a1a1a;
+    }
+    .navigation a {
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    text-decoration: none;
+    }
+    .navigation input {
+    float: left;
+    padding: 6px;
+    border: none;
+    margin-top: 15px;
+    margin-left: 95px;
+    width: 400px;
+    }
+    .navigation a.positionRight {
+     float: right;
+    }
+    .navigation a.positionLeft {
+     float: left;
+    }
+    section {
+    font-family: sans-serif;
+    display: -webkit-flex;
+    display: flex;
+    }
+    .fa {
+    font-family: sans-serif;
+    padding: 0px;
+    font-size: 30px;
+    width: 50px;
+    text-decoration: none;
+    text-align: right;
+    }
+    nav {
+    font-family: sans-serif;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    background: rgb(199, 199, 199);
+    padding: 40px;
+    }
+     nav ul {
+    font-family: sans-serif;
+    list-style-type: none;
+    padding: 0;
+    }
+    .column {
+    font-family: sans-serif;
+    float: left;
+    width: 33.33%;
+    }
+    .row:after {
+    font-family: sans-serif;
+    content: "";
+    display: table;
+    clear: both;
+    }
+    .row{
+    font-family: sans-serif;
+    background-color: rgb(199, 199, 199);
+    padding: 60 px;
+    }
+    .row button{
+    font-family: sans-serif;
+    padding: 20px;
+    }
+    .extra {
+    flex: 20%;
+    background-color: #8a1a1a;
+    padding: 20px;
+    color: #000000;
+    }
+.header
+.navigation
+  a.positionLeft(href='/search') Search
+  a.positionLeft(href='/contribute') Contribute
+  a.positionLeft(href='/movielist') List
+  a.positionRight(href='/logout') Logout
+  a.positionRight(href='/home') Home
+.row
+  .column
+    p
+      |Users Following:
+    #usersFollowing
+      each r in users
+        li 
+         a(href="/allUsers/"+r._id) #{r.username}
+         br
+      p Select a user to unfollow:
+      select#removeUser
+        each r in users
+          option #{r.username}
+      button#remove(type="button" onclick="unfollowUser()") Remove
+    br
+    br
+    a(href="/allUsers") View the list of all users
+  .column
+    p
+      | People (Actors, Directors, Writers) Following:
+    #personFollowing
+      each m in followedPeople
+        li
+          a(href="/movielist/person/"+m._id #) #{m.name}
+          br
+      p Select a person to unfollow:
+      select#removePerson
+        each m in followedPeople
+          option #{m.name}
+      button#removeMovies(type="button" onclick="unfollowPerson()") Remove
+  br
+  br
+  .column
+    .row
+      .accountInfo
+        p Username: #{userInfo}
+      if (sessionInfo.contribUser == false)
+        button#unfollow.positionRight(type='button' onclick="switchToContrib()") Switch to Contributing Account
+.extra
+  .row
+    .column
+      p
+        | Recommended Movies:
+        each m in recommendedMovies
+          li
+            a(href="/movielist/"+m._id #) #{m.Title}
+            br
+    .column
+      p.positionRight
+        | Watchlist:
+      #watchlistMovies
+        each m in watchlistMovies
+         li
+          a(href="/movielist/"+m._id #) #{m.Title}
+          br
+        p Select a movie to remove from watchlist:
+        select#removeFromWatchList
+          each m in watchlistMovies
+            option #{m.Title}
+        button#removeMovies(type="button" onclick="removeMovieFromWatchList()") Remove from watchlist
+
+          

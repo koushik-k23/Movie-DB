@@ -1,0 +1,134 @@
+doctype html
+link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+
+head
+  title Add a movie
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1')
+  style.
+    .header{
+    text-align: center;
+    background: #FFFFFF;
+    padding: 10px;
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    color: black;
+    }
+    .navigation {
+    overflow: hidden;
+    background-color: #8a1a1a;
+    }
+    .navigation a {
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    text-decoration: none;
+    }
+    .navigation input {
+     float: left;
+    padding: 6px;
+    border: none;
+    margin-top: 15px;
+    margin-left: 95px;
+    width: 400px;
+    }
+    .navigation a.positionRight {
+     float: right;
+    }
+    .navigation a.positionLeft {
+     float: left;
+    }
+    .fa {
+    padding: 0px;
+    font-size: 30px;
+    width: 50px;
+    text-decoration: none;
+    text-align: right;
+    }
+     .row {
+    font-family: sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    }
+    
+    .signInSection {
+    text-align: center;
+    flex: 80%;
+    font-family: sans-serif;
+    background-color: rgb(199, 199, 199);
+    padding: 20px 40px;
+    }
+    b.button1{
+     display:inline-block;
+     padding:0.35em 1.2em;
+     border:0.1em solid #FFFFFF;
+     margin:0 0.3em 0.3em 0;
+     border-radius:0.12em;
+     box-sizing: border-box;
+     text-decoration:none;
+     font-family:'Roboto',sans-serif;
+     font-weight:300;
+     color:#FFFFFF;
+     text-align:center;
+     transition: all 0.2s;
+    }
+    a.button1:hover{
+     color:#000000;
+     background-color:#FFFFFF;
+    }
+    @media all and (max-width:30em){
+     a.button1{
+      display:block;
+      margin:0.4em auto;
+     }
+    }
+.header
+
+.navigation
+  a.positionLeft
+    i.fa.fa-fw.fa-search
+  a.positionLeft(href='/movielist') List
+  a.positionRight(href='/home')
+    i.fa.fa-fw.fa-home
+  a.positionRight(href='/user/profile')
+    i.fa.fa-fw.fa-user
+  a.positionRight(href='/logout')
+    i.fa.fa-fw.fa-power-off  
+.row
+  .signInSection
+    .favMovies
+    #personInfo
+      p 
+        | Add a movie:
+      form(action="/user/movie/contrib" method="POST")
+        label Title:
+        input(type='text', name="title", required)
+        br
+        label Release year:
+        input(type='text', name="release", required)
+        br
+        label Runtime:
+        input(type='text', name="runtime", required)
+        br
+        label Genre:
+        input(type='text', name="genre", required)
+        br
+        label Select an actor:
+        select#selectActor
+          each m in results
+            option #{m.name}
+        label  Select a director:
+        select#selectDirector
+          each m in results
+            option #{m.name}
+        label  Select a Writer:
+        select#selectWriter
+          each m in results
+            option #{m.name}
+          br
+        button(type='submit') Create

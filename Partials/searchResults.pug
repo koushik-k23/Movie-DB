@@ -1,0 +1,151 @@
+//- style.
+//-     .searchResults{
+//-         font-family: sans-serif;
+//-         font-style: normal;
+//-         font-weight: bold;
+//-         }
+//- .searchResults
+//-     h1 Search Results:
+//-     each m in movieResults
+//-         a(href="/movielist/"+m._id #) #{m.Title}
+//-         br
+    
+//-     if current > 1
+//-         - let url = "/search/results?page=" + (current-1)
+//-         - if(qstring.length > 0){ url += "&" + qstring; }
+//-         a(href=url) Previous
+//-         | 
+//-     - url = "/search/results?page=" + (current+1)
+//-     - if(qstring.length > 0){ url += "&" + qstring; }
+//-     a(href=url) Next
+doctype html
+#results
+  link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+  head
+    title Search
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    style.
+      .header{
+      text-align: center;
+      background: #FFFFFF;
+      padding: 10px;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 40px;
+      color: white;
+      }
+      .navigation {
+      overflow: hidden;
+      background-color: #8a1a1a;
+      }
+      .navigation a {
+      /*Style for the Tab Text in Navigation Bar*/
+      font-family: sans-serif;
+      font-style: normal;
+      font-weight: bold;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      text-decoration: none;
+      }
+      .navigation input {
+      /*Style for the Search Bar in Navigation Bar*/
+      float: left;
+      padding: 6px;
+      border: none;
+      margin-top: 15px;
+      margin-left: 95px;
+      width: 400px;
+      }
+      .searchResults{
+      font-family: sans-serif;
+      font-style: normal;
+      font-weight: bold;
+      }
+      .navigation a.positionRight {
+      /*Positions the Signout Button Correctly*/
+      float: right;
+      }
+      .navigation a.positionLeft {
+      /*Positions the Signout Button Correctly*/
+      float: left;
+      }
+      .fa {
+      padding: 0px;
+      font-size: 30px;
+      width: 50px;
+      text-decoration: none;
+      text-align: right;
+      }
+      /* Column container */
+      .row {
+      display: flex;
+      flex-wrap: wrap;
+      }
+      .sideColumn {
+      flex: 20%;
+      background-color: #f1f1f1;
+      padding: 20px;
+      }
+      .signInSection {
+      text-align: center;
+      flex: 80%;
+      background-color: rgb(199, 199, 199);
+      padding: 20px 40px;
+      }
+      .searchResults{
+        text-align: center;
+        font-family: sans-serif;
+        font-style: normal;
+        font-weight: bold;
+      }
+  .header
+  script(src='/client.js')
+  .navigation
+    a.positionLeft(href='/search')
+      i.fa.fa-fw.fa-search
+    a.positionLeft(href='/contribute') Contribute
+    a.positionLeft(href='/movielist') List
+    a.positionRight(href='/signin') Sign In
+    a.positionRight(href='/signup') Sign Up
+    a.positionRight(href='/')
+      i.fa.fa-fw.fa-home
+  .row
+    .signInSection
+      .favMovies
+        p
+          | Search Your favourite movies, actors or genres!
+        ul
+          form(id="movieTitle" action="/action_page.php")
+            label Title:
+            input#title(type='text')
+            br
+            br
+          form(#Actor='/action_page.php')
+            label Actor:
+            input#actor(type='text')
+            br
+            br
+          form(#Genre='/action_page.php')
+            label Genre:
+            input#genre(type='text')
+            br
+            br
+          button#signIn(type='button' onclick="searchSubmit()") Search
+        .searchResults
+          h1 Search Results:
+          each m in movieResults
+            a(href="/movielist/"+m._id #) #{m.Title}
+            br
+
+          if current > 1
+            - let url = "/search/results?page=" + (current-1)
+            - if(qstring.length > 0){ url += "&" + qstring; }
+            a(href=url) Previous
+            | 
+          - url = "/search/results?page=" + (current+1)
+          - if(qstring.length > 0){ url += "&" + qstring; }
+          a(href=url) Next
+          
+        

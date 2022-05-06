@@ -1,0 +1,145 @@
+doctype html
+link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+
+head
+  title #{user.username}
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1')
+  style.
+    .column {
+    flex: 0%;
+    padding: 5px;
+    }
+    .row {
+    display: flex;
+    }  
+    .header{
+    text-align: center;
+    background: #FFFFFF;
+    padding: 10px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    color: white;
+    }
+    .navigation {
+    overflow: hidden;
+    background-color: #8a1a1a;
+    }
+    .navigation a {
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    text-decoration: none;
+    }
+    .navigation input {
+    float: left;
+    padding: 6px;
+    border: none;
+    margin-top: 15px;
+    margin-left: 95px;
+    width: 400px;
+    }
+    .navigation a.positionRight {
+    float: right;
+    }
+    .navigation a.positionLeft {
+    float: left;
+    }
+    .fa {
+    padding: 0px;
+    font-size: 30px;
+    width: 50px;
+    text-decoration: none;
+    text-align: right;
+    }
+    .row {
+    display: flex;
+    flex-wrap: wrap;
+    }
+    .sideColumn {
+    flex: 20%;
+    background-color: #f1f1f1;
+    padding: 20px;
+    }
+    .signInSection {
+    text-align: center;
+    flex: 80%;
+    background-color: rgb(214, 150, 10);
+    padding: 20px 40px;
+    }
+    .body{
+      text-align: center;
+      font-family: sans-serif;
+    }
+    .article {
+      font-family: sans-serif;
+      text-align: left;
+      background-color: rgb(214, 150, 10);
+    }
+script(src='/client.js')
+.navigation
+  a.positionLeft(href='/search')
+    i.fa.fa-fw.fa-search
+  a.positionLeft(href='/contribute') Contribute
+  a.positionRight(href='/user/profile')
+    i.fa.fa-fw.fa-user
+  a.positionLeft(href='/movielist') List
+  a.positionRight(href='/home')
+    i.fa.fa-fw.fa-home
+  a.positionRight(href='/logout')
+    i.fa.fa-fw.fa-power-off  
+.row
+    head
+        title Movie 
+.body
+    body
+        div#main 
+            h1#movieTitle User Profile: #{user.username}
+            button#addOrFollow(type="button" onclick="userFollow()") Follow
+            div#main
+                if (watchlist==0)
+                  br
+                  h1 #{user.username}'s watchlist is empty.
+                  br
+                if (watchlist.length>0)
+                    h1 #{user.username}'s watchlist:
+                    each w in watchlist
+                      a(href="/movielist/"+w._id) #{w.Title}
+                      br
+                |
+                if (followedPeople.length ==0)
+                  br
+                  h1 #{user.username} is not following anyone.
+                  br
+                if (followedPeople.length>0)
+                    h1 #{user.username} follows these people:
+                    each w in followedPeople
+                      a(href="/movielist/person/"+w._id) #{w.name}
+                      br
+                |
+                if (followedUser==0)
+                  br
+                  h1 #{user.username} is not following any users.
+                  br
+                if (followedUser.length>0)
+                    h1 #{user.username} follows these users:
+                    each w in followedUser
+                      a(href="/allUsers/"+w._id) #{w.username}
+                      br
+                if (userReview.length==0)
+                  br
+                  h1 #{user.username} has not made any reviews.
+                  br
+                if (userReview.length>0)
+                   h1 #{user.username} made these reviews:
+                   each u in userReview
+                    p Movie Title: #{u.Title}
+                    p Rating: #{u.Rating}
+                    p Summary: #{u.Summary}
+                    p Review : #{u.Review}
+                    //- a(href="/review/"+movie._id) View reviews
+                    br

@@ -1,0 +1,115 @@
+doctype html
+link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+
+head
+  title Movie Database Homepage
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1')
+  style.
+    .header{
+    text-align: center;
+    background: #FFFFFF;
+    padding: 10px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    color: white;
+    }
+    .navigation {
+    overflow: hidden;
+    background-color: #8a1a1a;
+    }
+    .navigation a {
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    text-decoration: none;
+    }
+    .navigation input {
+    float: left;
+    padding: 6px;
+    border: none;
+    margin-top: 15px;
+    margin-left: 95px;
+    width: 400px;
+    }
+    .navigation a.positionRight {
+    float: right;
+    }
+    .navigation a.positionLeft {
+    float: left;
+    }
+
+    .fa {
+    padding: 0px;
+    font-size: 30px;
+    width: 50px;
+    text-decoration: none;
+    text-align: right;
+    }
+
+    section {
+    display: -webkit-flex;
+    display: flex;
+    }
+    .row {
+    display: flex;
+    flex-wrap: wrap;
+    }
+    nav {
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    background: rgb(199, 199, 199);
+    padding: 20px;
+    }
+    /* Style the list inside the menu */
+    nav ul {
+    list-style-type: none;
+    padding: 0;
+    }
+    /* Style the content */
+    article {
+    -webkit-flex: 3;
+    -ms-flex: 3;
+    flex: 3;
+    background: rgb(199, 199, 199);
+    padding: 10px;
+    }
+.header
+.navigation
+  a.positionLeft(href='/search')
+    i.fa.fa-fw.fa-search
+  a.positionLeft(href='/contribute') Contribute
+  a.positionLeft(href='/movielist') List
+  a.positionRight(href='/logout')
+    i.fa.fa-fw.fa-power-off
+  a.positionRight(href='/user/profile')
+    i.fa.fa-fw.fa-user
+section
+  nav
+    .favMovies
+      p
+        | Recommended Movies:
+      ul
+        each m in userInfo.viewedMovies
+         li
+          a(href="/movielist/"+m._id #) #{m.Title}
+          br
+    .favPeople
+      p
+        | People pages you visited:
+      ul
+        each m in userInfo.actorVisit
+         li
+          a(href="/movielist/person/"+m.id #) #{m.name}
+          br
+  article
+    h1 Welcome!
+    p Looking to find out more about your favourite Movies and Actors/Actresses?
+    p
+      | You came to the right place! Sign up with us, to be able to browse many movies
+      | or your favourite faces, and follow them too!

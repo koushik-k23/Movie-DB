@@ -1,0 +1,96 @@
+doctype html
+link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+
+head
+  title LIST 
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1')
+  style.
+    .header{
+    text-align: center;
+    background: #FFFFFF;
+    padding: 10px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    color: white;
+    }
+    .navigation {
+    overflow: hidden;
+    background-color: #8a1a1a;
+    }
+    .navigation a {
+     font-family: sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    text-decoration: none;
+    }
+    .navigation input {
+     float: left;
+    padding: 6px;
+    border: none;
+    margin-top: 15px;
+    margin-left: 95px;
+    width: 400px;
+    }
+    .navigation a.positionRight {
+     float: right;
+    }
+    .navigation a.positionLeft {
+     float: left;
+    }
+    .fa {
+    padding: 0px;
+    font-size: 30px;
+    width: 50px;
+    text-decoration: none;
+    text-align: right;
+    }
+     .row {
+    display: flex;
+    flex-wrap: wrap;
+    }
+    .sideColumn {
+    flex: 20%;
+    background-color: #f1f1f1;
+    padding: 20px;
+    }
+    .signInSection {
+    text-align: center;
+    flex: 80%;
+    background-color: rgb(214, 150, 10);
+    padding: 20px 40px;
+    }
+    .body{
+    text-align: center;
+    }
+    .searchResults{
+        font-family: sans-serif;
+        font-style: normal;
+        font-weight: bold;
+    }
+.header
+.navigation
+  a.positionRight(href='/search')
+    i.fa.fa-fw.fa-search
+  a.positionLeft(href='/contribute') Contribute
+  a.positionLeft(href='/user/profile') Profile
+  a.positionRight(href='/home')
+    i.fa.fa-fw.fa-home
+  a.positionRight(href='/logout')
+    i.fa.fa-fw.fa-power-off  
+.row
+    head
+        title Movie 
+
+    body 
+         div#main
+          .searchResults  
+              h1 List of Movies:
+              div#main         
+                  each m in movies
+                      a(href="/movielist/"+m._id #) #{m.Title}
+                      br

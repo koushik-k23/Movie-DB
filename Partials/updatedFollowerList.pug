@@ -1,0 +1,9 @@
+each r in followedUser
+ li
+  a(href="/allUsers/"+r._id) #{r.username}
+  br
+p Select a user to unfollow:
+select#removeUser
+ each r in followedUser
+  option #{r.username}
+button#remove(type="button" onclick="unfollowUser()") Remove

@@ -1,0 +1,9 @@
+each m in followedPeople
+ li
+  a(href="/movielist/person/"+m._id #) #{m.name}
+  br
+p Select a person to unfollow:
+select#removePerson
+ each m in followedPeople
+  option #{m.name}
+button#removeMovies(type="button" onclick="unfollowPerson()") Remove

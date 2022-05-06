@@ -1,0 +1,130 @@
+doctype html
+link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+
+head
+  title #{person.name}
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1')
+  style.
+    .column {
+    flex: 0%;
+    padding: 5px;
+    }
+    .row {
+    display: flex;
+    }  
+    .header{
+    text-align: center;
+    background: #FFFFFF;
+    padding: 10px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    color: white;
+    }
+    .navigation {
+    overflow: hidden;
+    background-color: #8a1a1a;
+    }
+    .navigation a {
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    text-decoration: none;
+    }
+    .navigation input {
+    float: left;
+    padding: 6px;
+    border: none;
+    margin-top: 15px;
+    margin-left: 95px;
+    width: 400px;
+    }
+    .navigation a.positionRight {
+    float: right;
+    }
+    .navigation a.positionLeft {
+    float: left;
+    }
+    .fa {
+    padding: 0px;
+    font-size: 30px;
+    width: 50px;
+    text-decoration: none;
+    text-align: right;
+    }
+    .row {
+    display: flex;
+    flex-wrap: wrap;
+    }
+    .sideColumn {
+    flex: 20%;
+    background-color: #f1f1f1;
+    padding: 20px;
+    }
+    .signInSection {
+    text-align: center;
+    flex: 80%;
+    background-color: rgb(214, 150, 10);
+    padding: 20px 40px;
+    }
+    .body{
+      text-align: center;
+      font-family: sans-serif;
+    }
+    .article {
+      font-family: sans-serif;
+      text-align: left;
+      background-color: rgb(214, 150, 10);
+    }
+script(src='/client.js')
+.navigation
+  a.positionLeft(href='/search')
+    i.fa.fa-fw.fa-search
+  a.positionLeft(href='/contribute') Contribute
+  a.positionRight(href='/user/profile')
+    i.fa.fa-fw.fa-user
+  a.positionLeft(href='/movielist') List
+  a.positionRight(href='/home')
+    i.fa.fa-fw.fa-home
+.row
+    head
+        title Movie 
+.body
+    body
+        div#main 
+            h1#movieTitle #{person.name}:
+            button#addOrFollow(type="button" onclick="personFollow()") Follow
+            div#main
+                if (person.Actors.length>0)
+                    h1 Movies Acted In:
+                    div(class='row')
+                        each m in titles
+                            div(class='column')
+                                a(href="/movielist/"+m._id)
+                                    img(src=m.Poster)
+                    //- each m in titles
+                    //-     a(href="/movielist/"+m._id) #{m.Title}
+                    //-     br
+                |
+                if (person.Writer.length>0)
+                    h1 Movies As A Writer:
+                    div(class='row')
+                        each w in writer
+                            div(class='column')
+                                a(href="/movielist/"+w._id)
+                                    img(src=w.Poster)
+                    //- each w in writer
+                    //-     a(href="/movielist/"+w._id) #{w.Title}
+                    //-     br
+                |
+                if (person.Director.length>0)
+                    h1 Movies As A Director:
+                    div(class='row')
+                        each d in director
+                            div(class='column')
+                                a(href="/movielist/"+d._id)
+                                    img(src=d.Poster)

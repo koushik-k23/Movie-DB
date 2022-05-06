@@ -1,0 +1,91 @@
+doctype html
+link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+
+head
+  title Sign In
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1')
+  style.
+    .header{
+    text-align: center;
+    background: #FFFFFF;
+    padding: 10px;
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    color: black;
+    }
+    .navigation {
+    overflow: hidden;
+    background-color: #8a1a1a;
+    }
+    .navigation a {
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    text-decoration: none;
+    }
+    .navigation input {
+     float: left;
+    padding: 6px;
+    border: none;
+    margin-top: 15px;
+    margin-left: 95px;
+    width: 400px;
+    }
+    .navigation a.positionRight {
+     float: right;
+    }
+    .navigation a.positionLeft {
+     float: left;
+    }
+    .fa {
+    padding: 0px;
+    font-size: 30px;
+    width: 50px;
+    text-decoration: none;
+    text-align: right;
+    }
+     .row {
+    font-family: sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    }
+    
+    .signInSection {
+    text-align: center;
+    flex: 80%;
+    font-family: sans-serif;
+    background-color: rgb(199, 199, 199);
+    padding: 20px 40px;
+    }
+
+.header
+
+.navigation
+  a.positionLeft
+    i.fa.fa-fw.fa-search
+  a.positionLeft List
+  a.positionRight Sign In
+  a.positionRight(href='/signup') Sign Up
+  a.positionRight
+    i.fa.fa-fw.fa-home
+.row
+  .signInSection
+    .favMovies
+      p
+        | Welcome back! Sign in below :
+      form(action="/login" method="POST")
+        label Username:
+        input(type='text', name="username", required)
+        br
+        label Password:
+        input(type='text', name="password", required)
+        //- label Username:
+        //- input#username(type='text' username="username" required)
+        br
+        button(type='submit') Sign In

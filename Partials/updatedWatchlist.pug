@@ -1,0 +1,9 @@
+each m in watchlistMovies
+ li
+  a(href="/movielist/"+m._id #) #{m.Title}
+  br
+p Select a movie to remove from watchlist:
+select#removeFromWatchList
+ each m in watchlistMovies
+  option #{m.Title}
+button#removeMovies(type="button" onclick="removeMovieFromWatchList()") Remove from watchlist

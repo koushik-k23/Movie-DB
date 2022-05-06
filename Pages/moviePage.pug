@@ -1,0 +1,175 @@
+doctype html
+link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+
+head
+  title #{movie.Title}
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1')
+  style.
+    .column {
+    flex: 10%;
+    padding: 5px;
+    }
+    .row {
+    display: flex;
+    }  
+    .header{
+    text-align: center;
+    background: #FFFFFF;
+    padding: 10px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    color: white;
+    }
+    .navigation {
+    overflow: hidden;
+    background-color: #8a1a1a;
+    }
+    .navigation a {
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    text-decoration: none;
+    }
+    .navigation input {
+    float: left;
+    padding: 6px;
+    border: none;
+    margin-top: 15px;
+    margin-left: 95px;
+    width: 400px;
+    }
+    .navigation a.positionRight {
+    float: right;
+    }
+    .navigation a.positionLeft {
+    float: left;
+    }
+    .fa {
+    padding: 0px;
+    font-size: 30px;
+    width: 50px;
+    text-decoration: none;
+    text-align: right;
+    }
+    .row {
+    display: flex;
+    flex-wrap: wrap;
+    }
+    .sideColumn {
+    flex: 20%;
+    background-color: #f1f1f1;
+    padding: 20px;
+    }
+    .signInSection {
+    text-align: center;
+    flex: 80%;
+    background-color: rgb(199, 199, 199);
+    padding: 20px 40px;
+    }
+    .body{
+      text-align: center;
+      font-family: sans-serif;
+    }
+    .article {
+      font-family: sans-serif;
+      text-align: left;
+      background-color: rgb(199, 199, 199);
+    }
+    #reviewBox
+    {
+      flex: 20%;
+      font-family: sans-serif;
+      height:50px;
+      width:200px;
+      font-size:9pt;
+    }
+    #summaryBox
+    {
+      flex: 20%;
+      font-family: sans-serif;
+      height:50px;
+      width:200px;
+      font-size:9pt;
+    }
+script(src='/client.js')
+.navigation
+  a.positionLeft(href='/search')
+    i.fa.fa-fw.fa-search
+  a.positionLeft(href='/contribute') Contribute
+  a.positionRight(href='/user/profile')
+    i.fa.fa-fw.fa-user
+  a.positionLeft(href='/movielist') List
+  a.positionRight(href='/home')
+    i.fa.fa-fw.fa-home
+  a.positionRight(href='/logout')
+    i.fa.fa-fw.fa-power-off  
+.row
+    head
+        title Movie 
+.body
+    body
+        div#main 
+            h1#movieTitle #{movie.Title}:
+            button#watchlist(type="button" onclick="watchlistSubmit()") Add to watchlist
+            br
+            div#main
+            img(src=movie.Poster)
+            p Released in: #{movie.Year}
+            br
+            p Director:
+            each d in director
+              a(href="/movielist/person/"+d._id) #{d.name}
+              br
+            br
+            p Writer:
+            each w in writer
+              a(href="/movielist/person/"+w._id) #{w.name}
+              br
+            br
+            p Actors:
+            each actor in actors
+              a(href="/movielist/person/"+actor._id) #{actor.name}
+              br
+            br
+            p Plot: #{movie.Plot}
+            p Runtime: #{movie.Runtime}
+            p Genre: #{movie.Genre}
+            each genre in movie.Genre
+              a(href="/movielist/genre/"+genre) #{genre}, 
+            br
+            h1 Similar Movies:
+            div(class='row')
+              each m in similarMovies
+                div(class='column')
+                  a(href="/movielist/"+m._id)
+                    img(src=m.Poster)
+            .article
+              h1 Reviews:
+              P The average review for this movie is: ---
+              a(href="/review/"+movie._id) View reviews
+              P Review out of 10:
+                select#ratings
+                  option 0 
+                  option 1
+                  option 2
+                  option 3
+                  option 4
+                  option 5
+                  option 6
+                  option 7
+                  option 8
+                  option 9
+                  option 10
+              P Enter a summary:
+                input#summaryBox(type="textbox")
+              P Enter your review:
+                input#reviewBox(type="textbox")
+              button#submitButton(type="button" onclick="reviewSubmit()") Submit
+              
+    
+            
